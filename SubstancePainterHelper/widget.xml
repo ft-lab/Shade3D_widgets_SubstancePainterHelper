@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget>
+	<uuid>B692C0DC-0F56-4939-8F7C-5032E2E188E4</uuid>
+	<name lang="ja">Substance Painter Helper</name>
+	<name lang="en">Substance Painter Helper</name>
+	<url>index.html</url>
+	<version>1.0</version>
+	<description lang="ja">Substance Painter Helper</description>
+	<description lang="en">Substance Painter Helper</description>
+	<window initial_size="490 560"
+		position="0.42 0.63"
+		resizeable="false">
+	</window>
+</widget>
