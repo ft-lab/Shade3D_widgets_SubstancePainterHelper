@@ -1,4 +1,4 @@
-あ# Shade3D_widgets_SubstancePainterHelper
+# Shade3D_widgets_SubstancePainterHelper
 SubstancePainterHelper (Shade 3D widgets)
 
 ## 概要
