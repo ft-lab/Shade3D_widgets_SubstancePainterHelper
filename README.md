@@ -1,4 +1,4 @@
-# Shade3D_widgets_SubstancePainterHelper
+あ# Shade3D_widgets_SubstancePainterHelper
 SubstancePainterHelper (Shade 3D widgets)
 
 ## 概要
@@ -34,13 +34,13 @@ Shade 3D ver.15/widgets にコピーし、Shade 3Dを起動してください。
 「テクスチャの逆ガンマ補正」チェックボックスをOnにしておくと、テクスチャを読み込んだ際に、ガンマ値0.4545にします。
 シーン要素をリニアにしたい場合にチェックしてください。
 
-## テクスチャの変換ルール
+## 表面材質のマッピングレイヤ配置ルール
 
 「Substance Painterの使い方 (4) テクスチャのエクスポート編」
 
 http://qiita.com/ft-lab/items/98cd34a7a9379d64e187
 
-に書いている変換ルールを使ってます。
+に書いている配置ルールを使ってます。
 
 ## ライセンス
 
