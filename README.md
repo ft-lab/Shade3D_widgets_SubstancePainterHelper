@@ -4,7 +4,7 @@ SubstancePainterHelper (Shade 3D widgets)
 ## 概要
 
 Substance Painterで出力したテクスチャ（Diffuse/Normal/Roughness/Specularの4枚）をShade 3DにインポートするScriptです。
-Shade 3D ver.14または15 Basic/Standard/Professional以降で動作します。
+WindowsおよびMacのShade 3D ver.14または15 Basic/Standard/Professional以降で動作します。
 
 Substance PainterもしくはSubstance Painter 2では、テクスチャのエクスポート時に「Shade 3D」のConfigで出力するようにしてください。
 
