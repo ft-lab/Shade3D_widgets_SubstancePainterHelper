@@ -148,6 +148,23 @@ def createMasterSurface (projectName, textureSetName, diffuseImage, normalImage,
     masterSurface = None
     if updateMasterSurfaceF:
         masterSurface = findMasterSurface(masterSurfaceName)
+        if masterSurface != None:
+            # いったん表面材質としての情報をクリア.
+            # has_surface_attributesをFalseしてからTrue、とした場合にクラッシュするので地道に.
+            mLayersCou = masterSurface.surface.number_of_mapping_layers
+            for i in range(mLayersCou):
+                masterSurface.surface.remove_mapping(mLayersCou - 1 - i)
+            masterSurface.surface.has_aberration = False
+            masterSurface.surface.has_ambient = False
+            masterSurface.surface.has_anisotropic = False
+            masterSurface.surface.has_backlight = False
+            masterSurface.surface.has_glow = False
+            masterSurface.surface.has_metallic = False
+            masterSurface.surface.has_pseudo_caustics = False
+            masterSurface.surface.has_reflection = False
+            masterSurface.surface.has_refraction = False
+            masterSurface.surface.has_specular_2 = False
+            masterSurface.surface.has_transparency = False
     
     successF = False
     xshade.scene().begin_creating()
