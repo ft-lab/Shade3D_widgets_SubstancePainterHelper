@@ -10,6 +10,9 @@ import string
 def get_image_path ():
     dirtyF = xshade.scene().dirty
     
+    # 選択されている形状を一時保持.
+    activeShapesList = xshade.scene().active_shapes
+    
     # 画像を一時的に読み込み、ファイルパスだけ取得.
     xshade.scene().begin_creating()
     mImage = xshade.scene().create_master_image('test')
@@ -22,6 +25,10 @@ def get_image_path ():
     xshade.scene().end_creating()
     
     mImage.remove()     # 作業用に読み込んだマスターサーフェスは削除.
+
+    # 選択をもとに戻す.
+    xshade.scene().active_shapes = activeShapesList
+    
     xshade.scene().dirty = dirtyF
     
     # パス名の「\」は「/」に置き換え.

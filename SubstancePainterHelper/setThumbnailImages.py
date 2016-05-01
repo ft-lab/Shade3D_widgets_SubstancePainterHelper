@@ -73,6 +73,10 @@ def createThumbnailImageFile (fileName, texType = 0):
    
     scene = xshade.scene()
     dirtyF = scene.dirty
+    
+    # 選択されている形状を一時保持.
+    activeShapesList = xshade.scene().active_shapes
+    
     scene.begin_creating()
     mImage = None
     try :
@@ -89,6 +93,10 @@ def createThumbnailImageFile (fileName, texType = 0):
     scene.end_creating()
     if mImage != None:
         mImage.remove()     # 作業用に読み込んだマスターサーフェスは削除.
+        
+    # 選択をもとに戻す.
+    xshade.scene().active_shapes = activeShapesList
+        
     xshade.scene().dirty = dirtyF
     
     return retName
