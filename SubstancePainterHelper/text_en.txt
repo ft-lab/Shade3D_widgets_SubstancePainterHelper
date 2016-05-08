@@ -6,6 +6,6 @@ overwrite_master_image = "Overwrite master image"
 overwrite_master_surface = "Overwrite master surface"
 texture_regamma = "Reverse gamma correction of texture"
 
-set_image_but = "Set the image file ..."
+set_image_but = "Select the image file ..."
 load_select_texture_but = "Load a selection texture"
-load_all_texture_but = "Load all texture"
+load_all_texture_but = "Load all textures"
