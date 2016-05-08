@@ -1,0 +1,12 @@
+# 日本語のテキスト.
+
+main_message = "Substance Painterで出力した Diffuse/Normal/Roughness/Specularの4種類のテクスチャを、Shade 3Dに読み込みます。"
+
+overwrite_master_image = "マスターイメージの上書き"
+overwrite_master_surface = "マスターサーフェスの上書き"
+texture_regamma = "テクスチャの逆ガンマ補正"
+
+set_image_but = "画像ファイル指定 ..."
+load_select_texture_but = "選択テクスチャを読込"
+load_all_texture_but = "すべてのテクスチャを読込"
+

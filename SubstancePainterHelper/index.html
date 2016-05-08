@@ -1,5 +1,5 @@
 <!-- -------------------------------------------------------- -->
-<!-- Substance Painter Helper Ver.1.0.0                       -->
+<!-- Substance Painter Helper Ver.1.0.1                       -->
 <!-- -------------------------------------------------------- -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -20,11 +20,25 @@
 <!-- -------------------------------------- -->
 <script type="text/javascript">
 	var exportTextureFilePath = "";
+	var langName = "en";
 	
 	//--------------------------------------.
 	// 初期化処理.
 	//--------------------------------------.
 	function initialize() {
+	}
+
+	//--------------------------------------.
+	// 言語モード.
+	// "ja" ... 日本語.
+	//--------------------------------------.
+	function getLang() {
+		try {
+			return (navigator.browserLanguage || navigator.language || navigator.userLanguage).substr(0,2);
+		}
+		catch(e) {
+			return undefined;
+		}
 	}
 
 	//--------------------------------------.
@@ -43,6 +57,20 @@
 			dir = dir.substr(0, pos2);
 		}
 		return dir;
+	}
+	
+	//------------------------------------------------.
+	// リソースからテキストを取得.
+	//------------------------------------------------.
+	function getText ($scope, $timeout, keyStr) {
+		py_src  = "f_location = \"" + getFilePath() + "\"\n";
+		py_src += "f_key = \"" + keyStr + "\"\n";
+		py_src += "f_lang = \"" + langName + "\"\n";
+		py_src += readFileToString('./getText.py');
+		valStr = window.external.setScript(py_src);
+		
+		if (valStr == null) return "";
+		return valStr;
 	}
 	
 	//--------------------------------------.
@@ -169,11 +197,31 @@
 		py_src += readFileToString('./appendMasterSurface.py');
 		window.external.setScript(py_src);
 	}
+
+	//------------------------------------------------.
+	// AngularJSとしての初期化処理.
+	//------------------------------------------------.
+	function init ($scope, $timeout) {
+		// 使用言語を取得.
+		langName = getLang();
+		
+		// ページに表示するテキストを反映.
+		$scope.text_main_message = getText($scope, $timeout, "main_message");
+		$scope.text_overwrite_master_image = getText($scope, $timeout, "overwrite_master_image");
+		$scope.text_overwrite_master_surface = getText($scope, $timeout, "overwrite_master_surface");
+		$scope.text_texture_regamma = getText($scope, $timeout, "texture_regamma");
+		$scope.text_set_image_but = getText($scope, $timeout, "set_image_but");
+		$scope.text_load_select_texture_but = getText($scope, $timeout, "load_select_texture_but");
+		$scope.text_load_all_texture_but = getText($scope, $timeout, "load_all_texture_but");
+	}
 	
 	//------------------------------------------------.
 	// AngularJSとして、何かイベントがあれば呼ばれる.
 	//------------------------------------------------.
 	function SubstancePainterHelper ($scope, $timeout) {
+		// 初期化処理.
+		init($scope, $timeout);
+		
 		// 初期値の格納.
 		$scope.exportFilePath = "";
 		$scope.textures_list = null;
@@ -230,14 +278,12 @@
 <!-- HTML部                                 -->
 <!-- -------------------------------------- -->
 <body onload="initialize();">
-<h3>Substance Painter Helper ver.1.0.0</h3>
+<h3>Substance Painter Helper ver.1.0.1</h3>
 <hr />
 
-Substance Painterで出力した<br>
-Diffuse/Normal/Roughness/Specularの4種類のテクスチャを、<br>
-Shade 3Dに読み込みます。<br>
-<hr />
 <div ng-controller="SubstancePainterHelper">
+{{text_main_message}}
+<hr />
 <form name="form1" method="POST">
 	<hr>
 	<table border="0">
@@ -279,26 +325,26 @@ Shade 3Dに読み込みます。<br>
 		<tr>
 			<td colspan="2" nowrap>
 				<input type="checkbox" ng-model="update_master_image"  />
-				<small>&nbsp;マスターイメージの上書き</small>
+				<small>&nbsp;{{text_overwrite_master_image}}</small>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2" nowrap>
 				<input type="checkbox" ng-model="update_master_surface" />
-				<small>&nbsp;マスターサーフェスの上書き</small>
+				<small>&nbsp;{{text_overwrite_master_surface}}</small>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2" nowrap>
 				<input type="checkbox" ng-model="texture_gamma" />
-				<small>&nbsp;テクスチャの逆ガンマ補正</small>
+				<small>&nbsp;{{text_texture_regamma}}</small>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2" nowrap>
-				<input type="button" value="画像ファイル指定 ..." name="selectFile" ng-click="onSelectImage()" />
-				<input type="button" value="選択テクスチャを読込" name="selectFile" ng-click="onImportImage()" />
-				<input type="button" value="すべてのテクスチャを読込" name="selectFile" ng-click="onImportImageAll()" />
+				<input type="button" value="{{text_set_image_but}}" name="selectFile" ng-click="onSelectImage()" />
+				<input type="button" value="{{text_load_select_texture_but}}" name="selectFile" ng-click="onImportImage()" />
+				<input type="button" value="{{text_load_all_texture_but}}" name="selectFile" ng-click="onImportImageAll()" />
 			</td>
 		</tr>
 	</table>

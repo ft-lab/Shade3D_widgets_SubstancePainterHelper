@@ -81,10 +81,11 @@ def createThumbnailImageFile (fileName, texType = 0):
     mImage = None
     try :
         mImage = scene.create_master_image('test')
-        mImage.load_image(fileFullPath)
+        mImage.load_image(fileFullPath)     # この部分が重い.
         
         # サムネイル画像になるように縮小.
-        small_img = mImage.image.duplicate((THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT), True, 128)
+        small_img = mImage.image.duplicate((THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT), True, 32)
+        small_img = mImage.image
         small_img.save(thumbnailFullPath)
         retName = texNameList[texType]
     except:    
